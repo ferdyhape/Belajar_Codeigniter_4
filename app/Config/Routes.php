@@ -29,7 +29,23 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+
+$routes->get('/', 'Pages::index');
+$routes->get('/about', 'Pages::about');
+$routes->get('/contact', 'Pages::contact');
+$routes->get('/product', 'ProductController::index');
+$routes->get('/category', 'CategoryController::index');
+
+
+// $routes->get('/about', 'Home::about'); // Get tanpa parameter
+$routes->get('/about/(:any)/(:num)', 'Home::about/$1/$2'); // Get dengan parameter. $1 adalah parameter pertama, $2 adalah parameter kedua
+$routes->get('/HelloWorld', 'Home::HelloWorld'); //(/Tes) adalah request, Home adalah controller, HelloWorld adalah method
+$routes->get('/coba', 'Coba::index'); //(/Coba) adalah request, Coba adalah controller, index adalah method
+
+$routes->get('/users', 'Admin\UserController::index'); // Get tanpa parameter
+$routes->get('/use_fun', function () {
+    echo "Route ini menggunakan function closure";
+});
 
 /*
  * --------------------------------------------------------------------
