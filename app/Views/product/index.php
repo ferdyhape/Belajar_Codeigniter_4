@@ -4,7 +4,17 @@ Product
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<h2>Product</h2>
+<div class="d-flex justify-content-between">
+    <h2>Product</h2>
+    <a href="/product/create" class="btn btn-primary my-auto btn-sm">Create</a>
+</div>
+
+<?php if (session()->getFlashdata('success')) : ?>
+    <div class="alert alert-success my-2">
+        <?= session()->getFlashdata('success'); ?>
+    </div>
+<?php endif; ?>
+
 <div class="table-responsive my-2">
     <table class="table">
         <thead>
