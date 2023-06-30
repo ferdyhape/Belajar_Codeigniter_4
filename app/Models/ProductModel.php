@@ -29,7 +29,7 @@ class ProductModel extends Model
             ->join('categories', 'products.category_id = categories.id')
             ->select('products.id, products.name, products.price, categories.name as category_name')
             ->get()
-            ->getResultArray();
+            ->getResultArray(); // Get result array untuk mengambil semua data
 
         return $result;
     }
@@ -41,7 +41,7 @@ class ProductModel extends Model
             ->select('products.id, products.image, products.name, products.price, categories.name as category_name')
             ->where('products.id', $id)
             ->get()
-            ->getResultArray();
+            ->getRow(); // Get row untuk mengambil satu data saja
 
         return $result;
     }
