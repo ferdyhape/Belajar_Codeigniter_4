@@ -38,6 +38,8 @@ $routes->get('/contact', 'Pages::contact');
 // PRODUCT
 $routes->get('/product', 'ProductController::index');
 $routes->get('/product/(:num)', 'ProductController::detail/$1');
+$routes->get('/product/create', 'ProductController::create');
+$routes->post('/product/store', 'ProductController::store');
 
 // CATEGORY
 $routes->get('/category', 'CategoryController::index');
