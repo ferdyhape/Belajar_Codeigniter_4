@@ -30,10 +30,16 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
+// STATIC PAGE
 $routes->get('/', 'Pages::index');
 $routes->get('/about', 'Pages::about');
 $routes->get('/contact', 'Pages::contact');
+
+// PRODUCT
 $routes->get('/product', 'ProductController::index');
+$routes->get('/product/(:num)', 'ProductController::detail/$1');
+
+// CATEGORY
 $routes->get('/category', 'CategoryController::index');
 
 

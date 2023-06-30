@@ -26,7 +26,7 @@ Product
                     <td><?php echo $product['price']; ?></td>
                     <td><?php echo $product['category_name']; ?></td>
                     <td>
-                        <div class="btn btn-sm btn-success">Detail</div>
+                        <a href="product/<?php echo $product['id']; ?>" class="btn btn-sm btn-success">Detail</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
