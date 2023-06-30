@@ -20,25 +20,31 @@ class ProductModel extends Model
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    // GET ALL PRODUCT WITH CATEGORY
+    public function getAllProductWithCategory()
+    {
+        $result = $this->db->table('products')
+            ->join('categories', 'products.category_id = categories.id')
+            ->select('products.id, products.name, products.price, categories.name as category_name')
+            ->get()
+            ->getResultArray();
 
+        return $result;
+    }
+
+    function productWithCategory($id)
+    {
+        $result = $this->db->table('products')
+            ->join('categories', 'products.category_id = categories.id')
+            ->select('products.id, products.image, products.name, products.price, categories.name as category_name')
+            ->where('products.id', $id)
+            ->get()
+            ->getResultArray();
+
+        return $result;
+    }
     // RELATIONSHIP
     public function category()
     {

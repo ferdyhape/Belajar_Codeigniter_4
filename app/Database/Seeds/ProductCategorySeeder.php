@@ -29,12 +29,15 @@ class ProductCategorySeeder extends Seeder
         $productModel = new \App\Models\ProductModel(); //pengambilan model product
         $products = [];
         $categoryCount = count($categories);
-        $numberOfProducts = 10;
+        $numberOfProducts = 3; // Number of products to generate
+        $productName = ['Keyboard', 'Mouse', 'Laptop'];
+        $imageName = ['keyboard.jpg', 'mouse.jpeg', 'laptop.jpg'];
         for ($i = 1; $i <= $numberOfProducts; $i++) {
             $categoryIndex = ($i % $categoryCount) + 1;
 
             $products[] = [
-                'name' => 'Product ' . $i,
+                'name' =>  $productName[$i - 1],
+                'image' =>  $imageName[$i - 1],
                 'price' => rand(1000000, 20000000),
                 'category_id' => $categoryIndex,
             ];
@@ -42,38 +45,41 @@ class ProductCategorySeeder extends Seeder
         $productModel->insertBatch($products); //insert batch untuk memasukkan data sekaligus ke model product
 
 
-        // SEEDER TANPA MODEL
-        $categories = [
-            [
-                'name' => 'Category 1',
-                'description' => 'This is category 1'
-            ],
-            [
-                'name' => 'Category 2',
-                'description' => 'This is category 2'
-            ],
-            [
-                'name' => 'Category 3',
-                'description' => 'This is category 3'
-            ],
-        ];
+        // // SEEDER TANPA MODEL
+        // $categories = [
+        //     [
+        //         'name' => 'Category 1',
+        //         'description' => 'This is category 1'
+        //     ],
+        //     [
+        //         'name' => 'Category 2',
+        //         'description' => 'This is category 2'
+        //     ],
+        //     [
+        //         'name' => 'Category 3',
+        //         'description' => 'This is category 3'
+        //     ],
+        // ];
 
-        $this->db->table('categories')->insertBatch($categories);
+        // $this->db->table('categories')->insertBatch($categories);
 
-        $products = [];
-        $categoryCount = count($categories);
-        $numberOfProducts = 10; // Number of products to generate
+        // $products = [];
+        // $categoryCount = count($categories);
+        // $numberOfProducts = 3; // Number of products to generate
+        // $productName = ['Keyboard', 'Mouse', 'Laptop'];
+        // $imageName = ['keyboard.jpg', 'laptop.jpg', 'mouse.jpeg'];
 
-        for ($i = 1; $i <= $numberOfProducts; $i++) {
-            $categoryIndex = ($i % $categoryCount) + 1;
+        // for ($i = 1; $i <= $numberOfProducts; $i++) {
+        //     $categoryIndex = ($i % $categoryCount) + 1;
 
-            $products[] = [
-                'name' => 'Product ' . $i,
-                'price' => rand(1000000, 20000000),
-                'category_id' => $categoryIndex,
-            ];
-        }
+        //     $products[] = [
+        //         'name' => $productName[$i - 1],
+        //         'image' => $imageName[$i - 1],
+        //         'price' => rand(1000000, 20000000),
+        //         'category_id' => $categoryIndex,
+        //     ];
+        // }
 
-        $this->db->table('products')->insertBatch($products);
+        // $this->db->table('products')->insertBatch($products);
     }
 }
