@@ -31,15 +31,28 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 // STATIC PAGE
-$routes->get('/', 'Pages::index');
-$routes->get('/about', 'Pages::about');
-$routes->get('/contact', 'Pages::contact');
 
-// PRODUCT
-$routes->get('/product', 'ProductController::index');
-$routes->get('/product/(:num)', 'ProductController::detail/$1');
-$routes->get('/product/create', 'ProductController::create');
-$routes->post('/product/store', 'ProductController::store');
+$routes->group('', ['filter' => 'auth'], function ($routes) {
+    // Place your routes here
+    $routes->get('/', 'Pages::index');
+    $routes->get('/about', 'Pages::about');
+    $routes->get('/contact', 'Pages::contact');
+
+    // PRODUCT
+    $routes->get('/product', 'ProductController::index');
+    $routes->get('/product/(:num)', 'ProductController::detail/$1');
+    $routes->get('/product/create', 'ProductController::create');
+    $routes->post('/product/store', 'ProductController::store');
+    $routes->get('/product/edit/(:num)', 'ProductController::edit/$1');
+    $routes->put('/product/update/(:num)', 'ProductController::update/$1');
+    $routes->delete('/product/delete/(:num)', 'ProductController::delete/$1');
+
+    $routes->get('/logout', 'AuthController::logout');
+});
+// AUTH
+$routes->get('/login', 'AuthController::login');
+$routes->post('/authenticate', 'AuthController::authenticate');
+
 
 // CATEGORY
 $routes->get('/category', 'CategoryController::index');
