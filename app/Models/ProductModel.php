@@ -27,7 +27,7 @@ class ProductModel extends Model
     {
         $result = $this->db->table('products')
             ->join('categories', 'products.category_id = categories.id')
-            ->select('products.id, products.name, products.price, categories.name as category_name')
+            ->select('products.id, products.name, products.image, products.price, categories.name as category_name')
             ->get()
             ->getResultArray(); // Get result array untuk mengambil semua data
 

@@ -31,7 +31,7 @@ class ProductCategorySeeder extends Seeder
         $categoryCount = count($categories);
         $numberOfProducts = 3; // Number of products to generate
         $productName = ['Keyboard', 'Mouse', 'Laptop'];
-        $imageName = ['keyboard.jpg', 'mouse.jpeg', 'laptop.jpg'];
+        $imageName = ['product/keyboard.jpg', 'product/mouse.jpg', 'product/laptop.jpg'];
         for ($i = 1; $i <= $numberOfProducts; $i++) {
             $categoryIndex = ($i % $categoryCount) + 1;
 
