@@ -7,7 +7,10 @@
 </head>
 
 <body>
-    <?= $this->include('layouts/navbar'); ?>
+    <?php if (service('request')->uri->getPath() != 'login') : ?>
+        <?= $this->include('layouts/navbar'); ?>
+    <?php endif; ?>
+
     <div class="container my-3">
         <?= $this->renderSection('content') ?>
     </div>
